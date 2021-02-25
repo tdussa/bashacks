@@ -5,7 +5,7 @@ bh_host2irt()
                       | cut -d' ' -f1 \
 		      | sort -u)
 
-    for ipaddress in ${hosts}; do
+    for ipaddress in $(echo ${hosts}); do
         bh_ip2irt "$ipaddress"
     done
 }
