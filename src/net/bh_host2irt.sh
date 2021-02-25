@@ -6,6 +6,7 @@ bh_host2irt()
 		      | sort -u)
 
     for ipaddress in $(echo ${hosts}); do
+        echo "$ipaddress:"
         bh_ip2irt "$ipaddress"
     done
 }
