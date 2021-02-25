@@ -5,7 +5,7 @@ bh_ip2irt()
     local whoisresult="$(whois -c "$ipaddress")"
    
     echo "${whoisresult}" \
-        | sed '/^[Aa]buse contact /!d'
+        | sed '/ [Aa]buse contact /!d'
     echo
     echo "${whoisresult}" \
         | sed '/^irt:/,/^$/!d'
