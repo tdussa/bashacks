@@ -90,7 +90,6 @@
   ```
   ```
   tdussa@flattop ~ $ bh_host2as uni-stuttgart.de
-  ```
   129.69.5.3:
   AS      | IP               | AS Name
   553     | 129.69.5.3       | BELWUE BelWue-Koordination, DE
