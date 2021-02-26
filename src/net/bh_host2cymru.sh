@@ -1,4 +1,4 @@
-bh_host2as()
+bh_host2cymru()
 {
     local host="${1:-`bh_myip`}"
     local hosts=$(getent ahosts "${host}" \
