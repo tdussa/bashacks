@@ -15,7 +15,7 @@
 
 ## 3. Additional Functions
 
-* `bh_asinfo`: Look up AS information in Team Cyrmu's `whois` for a given
+* `bh_asinfo`: Look up AS information in Team Cymru's `whois` for a given
   AS.  (The string `AS` is prepended to the argument if it is not
   included.)
   Examples:
