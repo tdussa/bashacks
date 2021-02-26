@@ -15,6 +15,14 @@
 
 ## 3. Additional Functions
 
+* `bh_ip2as`: Look up ASinformation in Team Cymru's `whois` for a given IP.
+  Example:
+  ```
+  tdussa@flattop ~ $ bh_ip2as 129.13.64.5
+  AS      | IP               | AS Name
+  34878   | 129.13.64.5      | KIT Karlsruhe Institute of Technology, DE
+  ```
+
 * `bh_ip2irt`: Look up abuse contact information and the relevant IRT
   object in `whois` for a given IP.
   Example:
@@ -43,15 +51,61 @@
   last-modified:  2020-07-06T09:36:18Z
   source:         RIPE # Filtered
   mnt-by:         TRUSTED-INTRODUCER-MNT
+
+  OrgAbuseHandle: ABUSE3850-ARIN
+  OrgAbuseName:   Abuse Contact
+  OrgAbusePhone:  +31205354444 
+  OrgAbuseEmail:  abuse@ripe.net
+  OrgAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE3850-ARIN
+  % Abuse contact for '129.13.0.0 - 129.13.255.255' is 'cert@kit.edu'
+  abuse-c:        CKIT1-RIPE
+  ```
+
+* `bh_host2as`: Resolve a given host name to its IP address(es) and run
+  `bh_ip2as` on every one of those.
+  Examples:
+  ```
+  tdussa@flattop ~ $ bh_host2as tu-dresden.de
+  141.76.39.140:
+  AS      | IP               | AS Name
+  680     | 141.76.39.140    | DFN Verein zur Foerderung eines Deutschen Forschungsnetzes e.V., DE
+  ```
+  ```
+  tdussa@flattop ~ $ bh_host2as fbi.gov
+  104.16.148.244:
+  AS      | IP               | AS Name
+  13335   | 104.16.148.244   | CLOUDFLARENET, US
+  
+  104.16.149.244:
+  AS      | IP               | AS Name
+  13335   | 104.16.149.244   | CLOUDFLARENET, US
+  
+  2606:4700::6810:94f4:
+  AS      | IP                                       | AS Name
+  13335   | 2606:4700::6810:94f4                     | CLOUDFLARENET, US
+  
+  2606:4700::6810:95f4:
+  AS      | IP                                       | AS Name
+  13335   | 2606:4700::6810:95f4                     | CLOUDFLARENET, US
+  ```
+  ```
+  tdussa@flattop ~ $ bh_host2as uni-stuttgart.de
+  ```
+  129.69.5.3:
+  AS      | IP               | AS Name
+  553     | 129.69.5.3       | BELWUE BelWue-Koordination, DE
+  
+  2001:7c0:7c0:5::cafe:
+  AS      | IP                                       | AS Name
+  553     | 2001:7c0:7c0:5::cafe                     | BELWUE BelWue-Koordination, DE
   ```
 
 * `bh_host2irt`: Resolve a given host name to its IP address(es) and run
   `bh_ip2irt` on every one of those.
   Examples:
   ```
-  tdussa@flattop ~ $ bh_host2irt tu-dresden.de 
+  tdussa@flattop ~ $ bh_host2irt tu-dresden.de
   141.76.39.140:
-  % No abuse contact registered for 141.76.0.0 - 141.76.255.255
   irt:            IRT-DFN-CERT
   address:        DFN-CERT Services GmbH
   address:        Nagelsweg 41
@@ -76,26 +130,84 @@
   last-modified:  2020-03-09T14:27:23Z
   source:         RIPE # Filtered
   mnt-by:         TRUSTED-INTRODUCER-MNT
+  
+  % No abuse contact registered for 141.76.0.0 - 141.76.255.255
   ```
   ```
   tdussa@flattop ~ $ bh_host2irt fbi.gov      
   104.16.148.244:
-  % No abuse contact registered for 103.252.92.0 - 104.37.31.255
-
+  Comment:        All Cloudflare abuse reporting can be done via https://www.cloudflare.com/abuse
+  OrgAbuseHandle: ABUSE2916-ARIN
+  OrgAbuseName:   Abuse
+  OrgAbusePhone:  +1-650-319-8930 
+  OrgAbuseEmail:  abuse@cloudflare.com
+  OrgAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE2916-ARIN
+  RAbuseHandle: ABUSE2916-ARIN
+  RAbuseName:   Abuse
+  RAbusePhone:  +1-650-319-8930 
+  RAbuseEmail:  abuse@cloudflare.com
+  RAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE2916-ARIN
+  
   104.16.149.244:
-  % No abuse contact registered for 103.252.92.0 - 104.37.31.255
-
+  Comment:        All Cloudflare abuse reporting can be done via https://www.cloudflare.com/abuse
+  OrgAbuseHandle: ABUSE2916-ARIN
+  OrgAbuseName:   Abuse
+  OrgAbusePhone:  +1-650-319-8930 
+  OrgAbuseEmail:  abuse@cloudflare.com
+  OrgAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE2916-ARIN
+  RAbuseHandle: ABUSE2916-ARIN
+  RAbuseName:   Abuse
+  RAbusePhone:  +1-650-319-8930 
+  RAbuseEmail:  abuse@cloudflare.com
+  RAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE2916-ARIN
+  
   2606:4700::6810:94f4:
-  % No abuse contact registered for ::/0
-
+  Comment:        All Cloudflare abuse reporting can be done via https://www.cloudflare.com/abuse
+  OrgAbuseHandle: ABUSE2916-ARIN
+  OrgAbuseName:   Abuse
+  OrgAbusePhone:  +1-650-319-8930 
+  OrgAbuseEmail:  abuse@cloudflare.com
+  OrgAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE2916-ARIN
+  RAbuseHandle: ABUSE2916-ARIN
+  RAbuseName:   Abuse
+  RAbusePhone:  +1-650-319-8930 
+  RAbuseEmail:  abuse@cloudflare.com
+  RAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE2916-ARIN
+  
   2606:4700::6810:95f4:
-  % No abuse contact registered for ::/0
+  Comment:        All Cloudflare abuse reporting can be done via https://www.cloudflare.com/abuse
+  OrgAbuseHandle: ABUSE2916-ARIN
+  OrgAbuseName:   Abuse
+  OrgAbusePhone:  +1-650-319-8930 
+  OrgAbuseEmail:  abuse@cloudflare.com
+  OrgAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE2916-ARIN
+  RAbuseHandle: ABUSE2916-ARIN
+  RAbuseName:   Abuse
+  RAbusePhone:  +1-650-319-8930 
+  RAbuseEmail:  abuse@cloudflare.com
+  RAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE2916-ARIN
   ```
   ```
   tdussa@flattop ~ $ bh_host2irt uni-stuttgart.de
   129.69.5.3:
   % Abuse contact for '129.69.0.0 - 129.69.255.255' is 'abuse@uni-stuttgart.de'
-
+  
+  OrgAbuseHandle: ABUSE3850-ARIN
+  OrgAbuseName:   Abuse Contact
+  OrgAbusePhone:  +31205354444 
+  OrgAbuseEmail:  abuse@ripe.net
+  OrgAbuseRef:    https://rdap.arin.net/registry/entity/ABUSE3850-ARIN
+  % Abuse contact for '129.69.0.0 - 129.69.255.255' is 'abuse@uni-stuttgart.de'
+  abuse-c:        RUSN1-RIPE
+  abuse-mailbox:  abuse@uni-stuttgart.de
+  remarks:        trouble:      | abuse@Uni-Stuttgart.DE - spam, UBE, and AUP violations
+  
   2001:7c0:7c0:5::cafe:
   % Abuse contact for '2001:7c0:7c0::/48' is 'abuse@uni-stuttgart.de'
+  
+  % Abuse contact for '2001:7c0:7c0::/48' is 'abuse@uni-stuttgart.de'
+  abuse-c:        RUSN1-RIPE
+  abuse-mailbox:  abuse@uni-stuttgart.de
+  remarks:        trouble:      | abuse@Uni-Stuttgart.DE - spam, UBE, and AUP violations
+  abuse-mailbox:  abuse@belwue.de
   ```
