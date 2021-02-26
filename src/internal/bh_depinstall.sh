@@ -1,6 +1,6 @@
 bashacks_depinstall() {
     local sPktManager=
-    local sPkt="bc binutils coreutils file grep hexdump html2text perl sed wget zip"
+    local sPkt="bc binutils coreutils file grep hexdump html2text perl sed wget whois zip"
 
     if which apt-get >/dev/null; then # Debian-like
         sPktManager="apt-get install -qqy"
