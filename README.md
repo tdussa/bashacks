@@ -15,12 +15,37 @@
 
 ## 3. Additional Functions
 
-* `bh_ip2as`: Look up ASinformation in Team Cymru's `whois` for a given IP.
+* `bh_asinfo`: Look up AS information in Team Cyrmu's `whois` for a given
+  AS.  (The string `AS` is prepended to the argument if it is not
+  included.)
+  Examples:
+  ```
+  tdussa@flattop ~ $ bh_asinfo 32868        
+  AS      | CC | Registry | Allocated  | AS Name
+  32868   | US | arin     | 2004-08-10 | FLEX-DATASIDE-AS01, US
+  ```
+  ```
+  tdussa@flattop ~ $ bh_asinfo AS1  
+  AS      | CC | Registry | Allocated  | AS Name
+  1       | US | arin     | 2001-09-20 | LVLT-1, US
+  ```
+
+* `bh_ip2as`: Look up AS information in Team Cymru's `whois` for a given
+  IP.
   Example:
   ```
   tdussa@flattop ~ $ bh_ip2as 129.13.64.5
   AS      | IP               | AS Name
   34878   | 129.13.64.5      | KIT Karlsruhe Institute of Technology, DE
+  ```
+
+* `bh_ip2cymru`: Look up all information provided by Team Cymru for a
+  given IP.
+  Example:
+  ```
+  tdussa@flattop ~ $ bh_ip2cymru 129.13.64.5
+  AS      | IP               | BGP Prefix          | CC | Registry | Allocated  | AS Name
+  34878   | 129.13.64.5      | 129.13.0.0/16       | DE | ripencc  | 1987-06-29 | KIT Karlsruhe Institute of Technology, DE
   ```
 
 * `bh_ip2irt`: Look up abuse contact information and the relevant IRT
@@ -97,6 +122,44 @@
   2001:7c0:7c0:5::cafe:
   AS      | IP                                       | AS Name
   553     | 2001:7c0:7c0:5::cafe                     | BELWUE BelWue-Koordination, DE
+  ```
+
+* `bh_host2cymru`: Resolve a given host name to its IP address(es) and run
+  `bh_ip2cymru` on every one of those.
+  Examples:
+  ```
+  tdussa@flattop ~ $ bh_host2cymru tu-dresden.de
+  141.76.39.140:
+  AS      | IP               | BGP Prefix          | CC | Registry | Allocated  | AS Name
+  680     | 141.76.39.140    | 141.76.0.0/16       | DE | ripencc  | 1990-06-07 | DFN Verein zur Foerderung eines Deutschen Forschungsnetzes e.V., DE
+  ```
+  ```
+  tdussa@flattop ~ $ bh_host2cymru fbi.gov
+  104.16.148.244:
+  AS      | IP               | BGP Prefix          | CC | Registry | Allocated  | AS Name
+  13335   | 104.16.148.244   | 104.16.144.0/20     | US | arin     | 2014-03-28 | CLOUDFLARENET, US
+
+  104.16.149.244:
+  AS      | IP               | BGP Prefix          | CC | Registry | Allocated  | AS Name
+  13335   | 104.16.149.244   | 104.16.144.0/20     | US | arin     | 2014-03-28 | CLOUDFLARENET, US
+
+  2606:4700::6810:94f4:
+  AS      | IP                                       | BGP Prefix          | CC | Registry | Allocated  | AS Name
+  13335   | 2606:4700::6810:94f4                     | 2606:4700::/44      | US | arin     | 2011-11-01 | CLOUDFLARENET, US
+
+  2606:4700::6810:95f4:
+  AS      | IP                                       | BGP Prefix          | CC | Registry | Allocated  | AS Name
+  13335   | 2606:4700::6810:95f4                     | 2606:4700::/44      | US | arin     | 2011-11-01 | CLOUDFLARENET, US
+  ```
+  ```
+  tdussa@flattop ~ $ bh_host2cymru uni-stuttgart.de
+  129.69.5.3:
+  AS      | IP               | BGP Prefix          | CC | Registry | Allocated  | AS Name
+  553     | 129.69.5.3       | 129.69.0.0/16       | DE | ripencc  | 1987-09-09 | BELWUE BelWue-Koordination, DE
+
+  2001:7c0:7c0:5::cafe:
+  AS      | IP                                       | BGP Prefix          | CC | Registry | Allocated  | AS Name
+  553     | 2001:7c0:7c0:5::cafe                     | 2001:7c0::/32       | DE | ripencc  | 2002-04-11 | BELWUE BelWue-Koordination, DE
   ```
 
 * `bh_host2irt`: Resolve a given host name to its IP address(es) and run
