@@ -8,6 +8,7 @@ bashacks_depinstall() {
         sPktManager="zypper -q --non-interactive install"
     elif which yum >/dev/null; then # RedHat-like
         sPktManager="yum -qy install"
+        sPkt=${sPkt/hexdump/util-linux}
     elif which brew >/dev/null; then # OS X
         sPktManager="brew install"
     fi
