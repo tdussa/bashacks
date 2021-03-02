@@ -2,7 +2,15 @@
 
  1. What is this
  2. Additional Requirements
- 3. Additional Functions
+    1. `whois`
+ 4. Additional Functions
+    1. `bh_asinfo`
+    2. `bh_host2as`
+    3. `bh_host2cymru`
+    4. `bh_host2irt`
+    5. `bh_ip2as`
+    6. `bh_ip2cymru`
+    7. `bh_ip2irt`
 
 ## 1. What is this
 
