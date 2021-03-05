@@ -1,16 +1,19 @@
 # bashacks
 
  1. What is this
- 2. Additional Requirements
+ 1. Additional Requirements
+    1. `passwdqc`
     1. `whois`
- 4. Additional Functions
+ 1. Additional Functions
     1. `bh_asinfo`
-    2. `bh_host2as`
-    3. `bh_host2cymru`
-    4. `bh_host2irt`
-    5. `bh_ip2as`
-    6. `bh_ip2cymru`
-    7. `bh_ip2irt`
+    1. `bh_dwpwd`
+    1. `bh_dwpwx`
+    1. `bh_host2as`
+    1. `bh_host2cymru`
+    1. `bh_host2irt`
+    1. `bh_ip2as`
+    1. `bh_ip2cymru`
+    1. `bh_ip2irt`
 
 ## 1. What is this
 
@@ -19,6 +22,10 @@
 
 ## 2. Additional Requirements
 
+The additional requirements listed here are Debian/Ubuntu packages.  They
+might be named differently on different distros.
+
+* `passwdqc`
 * `whois`
 
 ## 3. Additional Functions
@@ -36,6 +43,21 @@
   tdussa@flattop ~ $ bh_asinfo AS1  
   AS      | CC | Registry | Allocated  | AS Name
   1       | US | arin     | 2001-09-20 | LVLT-1, US
+  ```
+
+* `bh_dwpwd`: Generate a diceware password with only letters and digits.
+  Example:
+  ```
+  tdussa@flattop ~ $ bh_dwpwd
+  ornate7run7rude8mighty6Brine
+  ```
+
+* `bh_dwpwx`: Generate a diceware password, potentially containing
+  special characters as well.
+  Example:
+  ```
+  tdussa@flattop ~ $ bh_dwpwx
+  Bitch6snap*Dune9Red$humane
   ```
 
 * `bh_ip2as`: Look up AS information in Team Cymru's `whois` for a given
