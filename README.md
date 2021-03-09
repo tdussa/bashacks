@@ -14,6 +14,7 @@
     1. `bh_ip2as`
     1. `bh_ip2cymru`
     1. `bh_ip2irt`
+    1. `bh_prefix`
 
 ## 1. What is this
 
@@ -302,4 +303,11 @@ might be named differently on different distros.
   abuse-mailbox:  abuse@uni-stuttgart.de
   remarks:        trouble:      | abuse@Uni-Stuttgart.DE - spam, UBE, and AUP violations
   abuse-mailbox:  abuse@belwue.de
+  ```
+
+* `bh_prefix`: Prepends all STDOUT and STDERR lines with a given prefix.
+  Examples:
+  ```
+  tdussa@flattop ~ $ bh_prefix "LOCALHOST:\t" ssh localhost uptime
+  LOCALHOST:	 07:55:28 up 7 days, 21:56,  3 users,  load average: 0.20, 0.32, 2.53
   ```
