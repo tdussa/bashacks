@@ -309,8 +309,8 @@ might be named differently on different distros.
   prefixes, potentially different ones for `STDOUT` and `STDERR`.  If the
   environment variable `PREFIX` is set, then that is used for `STDOUT`;
   if `PREFIX2` is set, that is used for `STDERR`.  If neither is set, the
-  first argument is taken and used for *both*. Beware: This function may
-  cause relavite reordering of `STDOUT` and `STDERR` output.
+  first argument is taken and used for *both*. **Beware:** This function may
+  cause relative reordering of `STDOUT` and `STDERR` output.
   Examples:
   ```
   tdussa@flattop ~ $ bh_prefix "ALLOUT:\t" ssh localhost "echo OK; echo ERROR > /dev/stderr"
