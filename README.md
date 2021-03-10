@@ -305,9 +305,30 @@ might be named differently on different distros.
   abuse-mailbox:  abuse@belwue.de
   ```
 
-* `bh_prefix`: Prepends all STDOUT and STDERR lines with a given prefix.
+* `bh_prefix`: Prepends all `STDOUT` and `STDERR` lines with given
+  prefixes, potentially different ones for `STDOUT` and `STDERR`.  If the
+  environment variable `PREFIX` is set, then that is used for `STDOUT`;
+  if `PREFIX2` is set, that is used for `STDERR`.  If neither is set, the
+  first argument is taken and used for *both*. Beware: This function may
+  cause relavite reordering of `STDOUT` and `STDERR` output.
   Examples:
   ```
-  tdussa@flattop ~ $ bh_prefix "LOCALHOST:\t" ssh localhost uptime
-  LOCALHOST:	 07:55:28 up 7 days, 21:56,  3 users,  load average: 0.20, 0.32, 2.53
+  tdussa@flattop ~ $ bh_prefix "ALLOUT:\t" ssh localhost "echo OK; echo ERROR > /dev/stderr"
+  ALLOUT:	OK
+  ALLOUT:	ERROR
+  ```
+  ```
+  tdussa@flattop ~ $ PREFIX="STDOUT:\t" bh_prefix ssh localhost "echo OK; echo ERROR > /dev/stderr"
+  STDOUT:	OK
+  ERROR
+  ```
+  ```
+  tdussa@flattop ~ $ PREFIX2="STDERR:\t" bh_prefix ssh localhost "echo OK; echo ERROR > /dev/stderr"
+  OK
+  STDERR:	ERROR
+  ```
+  ```
+  tdussa@flattop ~ $ PREFIX="STDOUT:\t" PREFIX2="STDERR:\t" bh_prefix ssh localhost "echo OK; echo ERROR > /dev/stderr" 
+  STDERR:	ERROR
+  STDOUT:	OK
   ```
